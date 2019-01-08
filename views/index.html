@@ -33,24 +33,31 @@
     </header>
 
     <main>
-      <div>
-        <div class="card" style="width: 18rem;">
-          <form method="POST">
-            <div class="card-body" acti>
+      <div class="d-flex">
+        <div class="card " style="width: 18rem;">
+          <form method="POST" action="/api/exercise/new-user">
+            <div class="card-body">
               <h5 class="card-title">Create a new user</h5>
-              
+              <input name="username" placeholder="username" class="mb-1 form-control">
+              <input type="submit" value="save" class="btn btn-success btn-block">
             </div>
           </form>
         </div>
         
         <br>
+        
         <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="..." alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
+          <form method="POST" action="/api/exercise/add">
+            <div class="card-body">
+              <h5 class="card-title">Add exercise</h5>
+              <input name="userId" placeholder="userId*" class="mb-1 form-control">
+              <input name="description" placeholder="description*" class="mb-1 form-control">
+              <input name="duration" placeholder="duration (mins.)" class="mb-1 form-control">
+              <input name="date" placeholder="date (yyyy-mm-dd)" class="mb-1 form-control">
+              
+              <input type="submit" value="save" class="btn btn-success btn-block">
+            </div>
+          </form>
         </div>
       </div>
       
