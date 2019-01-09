@@ -42,8 +42,16 @@ app.route('/api/exercise/new-user')
 
 app.route('/api/exercise/add')
   .post((req, res) => {
-    let { userId, description, duration, data } = req.body;
-    User.find({userId: })
+    let { userId, description, duration, date } = req.body;
+    User.findById({_id: userId}, (err, data) => {
+      if(err) res.send(err);
+      description && (data.description = description);
+      duration && (data.duration = duration);
+      date && (data.date = date);
+      data.save((err, data) => {
+        err ? res.send(err) : res.send(data);
+      });
+    });
 });
 
 // listen for requests :)
