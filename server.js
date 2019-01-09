@@ -12,8 +12,10 @@ const app = express();
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
 mongoose.connect(process.env.MONGO_URL);
 const userSchema = new mongoose.Schema({
-  name: String,
-  
+  username: String,
+  description: String,
+  duration: Number,
+  date: Date
 });
 const User = mongoose.model("User", userSchema);
 
@@ -26,6 +28,9 @@ app.use(express.static('public'));
 app.get('/', function(request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
+
+app.route('/api/exercise')
+  .post("/new-user", (req, res) => {});
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, function() {
