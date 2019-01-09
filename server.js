@@ -29,8 +29,22 @@ app.get('/', function(request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-app.route('/api/exercise')
-  .post("/new-user", (req, res) => {});
+app.route('/api/exercise/new-user')
+  .post((req, res) => {
+    let userObj = new User({
+      username: req.body.username
+    });
+    userObj.save((err, data) => {
+      err ? res.send(err) : res.send(data);
+      console.log(data);
+    }); 
+});
+
+app.route('/api/exercise/add')
+  .post((req, res) => {
+    let { userId, description, duration, data } = req.body;
+    User.find({userId: })
+});
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, function() {
