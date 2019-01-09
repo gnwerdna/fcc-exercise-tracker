@@ -10,7 +10,7 @@ const app = express();
 
 // we've started you off with Express, 
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
-mongoose.connect(process.env.MONGO_URL);
+mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true});
 const userSchema = new mongoose.Schema({
   username: String,
   description: String,
@@ -44,13 +44,16 @@ app.route('/api/exercise/add')
   .post((req, res) => {
     let { userId, description, duration, date } = req.body;
     User.findById({_id: userId}, (err, data) => {
-      if(err) res.send(err);
-      description && (data.description = description);
-      duration && (data.duration = duration);
-      date && (data.date = date);
-      data.save((err, data) => {
-        err ? res.send(err) : res.send(data);
-      });
+      if(err) {
+        res.send("wrong userId or something wrong!");
+      } else {
+        description && (data.description = description);
+        duration && (data.duration = duration);
+        date && (data.date = date);
+        data.save((err, data) => {
+          err ? res.send(err) : res.send(data);
+        });
+      }
     });
 });
 
