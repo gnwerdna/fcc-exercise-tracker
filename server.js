@@ -10,6 +10,12 @@ const app = express();
 
 // we've started you off with Express, 
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
+mongoose.connect(process.env.MONGO_URL);
+const userSchema = new mongoose.Schema({
+  name: String,
+  
+});
+const User = mongoose.model("User", userSchema);
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(bodyParser.urlencoded({extended: false}));
